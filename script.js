@@ -35,10 +35,11 @@ function generateCombinations(words, index = 0, current = []) {
 
 let keys = [];
 let currentPage = 0;
+const keysPerPage = 100000;
 
 function displayKeys(page) {
-  const start = page * 10;
-  const end = start + 10;
+  const start = page * keysPerPage;
+  const end = start + keysPerPage;
   const displayedKeys = keys.slice(start, end);
   const keyList = document.getElementById('key-list');
   keyList.innerHTML = '';
@@ -56,19 +57,19 @@ document.getElementById('generate').addEventListener('click', async () => {
   currentPage = 0;
   displayKeys(currentPage);
   document.getElementById('previous').disabled = currentPage === 0;
-  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / keysPerPage) - 1;
 });
 
 document.getElementById('previous').addEventListener('click', () => {
   currentPage -= 1;
   displayKeys(currentPage);
   document.getElementById('previous').disabled = currentPage === 0;
-  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / keysPerPage) - 1;
 });
 
 document.getElementById('next').addEventListener('click', () => {
   currentPage += 1;
   displayKeys(currentPage);
   document.getElementById('previous').disabled = currentPage === 0;
-  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / keysPerPage) - 1;
 });
