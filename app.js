@@ -54,9 +54,6 @@ const clearButton = document.getElementById("clear-button");
 // Add click event listener to the clear button
 clearButton.addEventListener("click", () => {
   // Clear the input field and results
-  document.getElementById("seed-phrase").value = "";
-  document.getElementById("results").innerHTML = "";
-});
 
 // Load the required libraries
 Promise.all([
