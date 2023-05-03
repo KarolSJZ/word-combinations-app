@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Cain's Wallet Cracker</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Effect</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div id="app">
-    <div id="wrapper">
-      <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-      <span class="sub">How to use</span>
-      <p class="instruction">
-        Paste your seed phrases (12 words) into the input area and click "CRACK IT!" to check the balance and
-        ecash address for each seed. Use the "Paste" button to paste from clipboard and "Clear" button to clear the input area.
-      </p>
-      <button id="pasteButton">Paste</button>
-      <button id="clearButton">Clear</button>
-      <textarea id="inputArea"></textarea>
-      <button id="crackButton">CRACK IT!</button>
-      <div id="results"></div>
+    <div class="container">
+        <h1 class="glitch" data-text="GLITCH">GLITCH</h1>
+        <p class="instructions">How to use:</p>
+        <textarea id="inputData" class="textarea"></textarea>
+        <button id="pasteButton" class="button">Paste</button>
     </div>
-  </div>
-  <script src="app.js"></script>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
