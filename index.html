@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Cain's Wallet Cracker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Cain's Wallet Cracker</title>
 </head>
 <body>
-    <div id="app">
-        <div id="wrapper">
-            <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-            <span class="sub">INSTRUKCJA OBSŁUGI</span>
-            <div>
-                <button id="pasteButton">Paste</button>
-                <button id="clearButton">Clear</button>
-            </div>
-            <textarea id="inputArea" rows="20" cols="50"></textarea>
-            <button id="crackItButton">CRACK IT!</button>
-            <div id="results"></div>
-        </div>
+  <div id="app">
+    <div id="wrapper">
+      <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
+      <span class="sub">How to use</span>
+      <p class="instruction">
+        Paste your seed phrases (12 words) into the input area and click "CRACK IT!" to check the balance and
+        ecash address for each seed. Use the "Paste" button to paste from clipboard and "Clear" button to clear the input area.
+      </p>
+      <button id="pasteButton">Paste</button>
+      <button id="clearButton">Clear</button>
+      <textarea id="inputArea"></textarea>
+      <button id="crackButton">CRACK IT!</button>
+      <div id="results"></div>
     </div>
-    <script src="app.js"></script>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>
