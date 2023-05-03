@@ -1,85 +1,64 @@
-// Pobierz formularz i przycisk
-const form = document.getElementById('word-form');
-const submitButton = document.getElementById('submit-button');
+// Get the word inputs
+const wordInputs = document.querySelectorAll(".word-input");
 
-// Dodaj obsługę zdarzenia kliknięcia na przycisk
-submitButton.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    // Znajdź wszystkie pola input w formularzu
-    const inputs = form.querySelectorAll('input[type="text"]');
-
-    // Utwórz pustą tablicę słów
-    const words = [];
-
-    // Przejdź przez wszystkie pola input
-    for (let i = 0; i < inputs.length; i++) {
-        const word = inputs[i].value.trim();
-        if (word !== '') {
-            words.push(word);
-        }
+// Generate an array of words from the non-empty inputs
+function getWords() {
+  const words = [];
+  for (let i = 0; i < wordInputs.length; i++) {
+    const word = wordInputs[i].value.trim();
+    if (word !== "") {
+      words.push(word);
     }
-
-    // Wywołaj funkcję generującą kombinacje
-    generateCombinations(words);
-});
-
-function generateCombinations(words) {
-    // Wygeneruj kombinacje tylko wtedy, gdy istnieją jakieś słowa
-    if (words.length > 0) {
-        // Usuń wcześniejsze wyniki z wyświetlacza
-        const combinationsElement = document.getElementById('combinations');
-        combinationsElement.innerHTML = '';
-
-        // Wygeneruj kombinacje
-        const combinations = generateAllCombinations(words);
-
-        // Wyświetl kombinacje
-        displayCombinations(combinations);
-    }
+  }
+  return words;
 }
 
-function generateAllCombinations(words) {
-    const combinations = [];
+// Generate combinations using the selected words
+function generateCombinations() {
+  const words = getWords();
+  const combinations = [];
 
-    // Utwórz tablicę zawierającą indeksy słów (0, 1, 2, itd.)
-    const wordIndexes = words.map((word, index) => index);
-
-    // Wygeneruj wszystkie możliwe kombinacje indeksów
-    const indexCombinations = generateIndexCombinations(wordIndexes);
-
-    // Dla każdej kombinacji indeksów utwórz kombinację słów
-    for (let i = 0; i < indexCombinations.length; i++) {
-        const indexCombination = indexCombinations[i];
-        const combination = indexCombination.map(index => words[index]).join(' ');
+  // Generate combinations
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words.length; j++) {
+      if (i !== j) {
+        const combination = words[i] + " " + words[j];
         combinations.push(combination);
+      }
     }
+  }
 
-    return combinations;
+  // Display combinations
+  const combinationsElement = document.getElementById("combinations");
+  combinationsElement.innerHTML = "";
+  for (let i = 0; i < combinations.length; i++) {
+    const combinationElement = document.createElement("div");
+    combinationElement.className = "combination";
+    combinationElement.textContent = combinations[i];
+    combinationsElement.appendChild(combinationElement);
+  }
 }
 
-function generateIndexCombinations(indexes) {
-    const combinations = [];
+// Paginate the combinations
+function paginateCombinations() {
+  const combinationsElement = document.getElementById("combinations");
+  const combinations = combinationsElement.querySelectorAll(".combination");
+  const pagesElement = document.getElementById("pages");
+  const numCombinations = combinations.length;
+  const combinationsPerPage = 100000;
+  const numPages = Math.ceil(numCombinations / combinationsPerPage);
+  pagesElement.textContent = numPages + " pages";
 
-    // Funkcja rekurencyjna do wygenerowania kombinacji indeksów
-    function generate(currentCombination, remainingIndexes) {
-        // Jeżeli nie ma już pozostałych indeksów, dodaj bieżącą kombinację do listy
-        if (remainingIndexes.length === 0) {
-            combinations.push(currentCombination);
-        } else {
-            // W przeciwnym razie wywołaj funkcję dla każdej pozostałej liczby
-            for (let i = 0; i < remainingIndexes.length; i++) {
-                const newCombination = currentCombination.concat(remainingIndexes[i]);
-                const newRemainingIndexes = remainingIndexes.slice(0, i).concat(remainingIndexes.slice(i + 1));
-                generate(newCombination, newRemainingIndexes);
-            }
-        }
-    }
+  // Display first page of combinations
+  for (let i = 0; i < combinationsPerPage && i < numCombinations; i++) {
+    combinations[i].style.display = "block";
+  }
 
-    // Wywołaj funkcję rekurencyjną
-    generate([], indexes);
-
-    return combinations;
+  // Hide all other combinations
+  for (let i = combinationsPerPage; i < numCombinations; i++) {
+    combinations[i].style.display = "none";
+  }
 }
 
-function displayCombinations(combinations) {
+// Call paginateCombinations when the page loads
+window.addEventListener("load", paginateCombinations);
