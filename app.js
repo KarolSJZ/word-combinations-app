@@ -1,6 +1,3 @@
-const bitcoin = require("bitcoinjs-lib");
-require("@muzamint/bitcoinjs-lib-networks");
-
 // Get reference to the crack button
 const crackButton = document.getElementById("crack-button");
 
@@ -57,3 +54,26 @@ const clearButton = document.getElementById("clear-button");
 // Add click event listener to the clear button
 clearButton.addEventListener("click", () => {
   // Clear the input field and results
+  document.getElementById("seed-phrase").value = "";
+  document.getElementById("results").innerHTML = "";
+});
+
+// Load the required libraries
+Promise.all([
+  importScripts("https://cdn.jsdelivr.net/npm/bip39@3.0.2/dist/bip39.min.js"),
+  importScripts(
+    "https://cdn.jsdelivr.net/npm/bitcoinjs-lib@5.1.13/dist/bitcoinjs-lib.min.js"
+  ),
+  importScripts(
+    "https://cdn.jsdelivr.net/npm/@muzamint/bitcoinjs-lib-networks@1.0.6/dist/bitcoinjs-lib-networks.min.js"
+  ),
+  importScripts(
+    "https://cdn.jsdelivr.net/npm/@muzamint/bitcoinjs-lib-payments@1.0.7/dist/bitcoinjs-lib-payments.min.js"
+  ),
+])
+  .then((modules) => {
+    console.log("Loaded all required libraries");
+  })
+  .catch((error) => {
+    console.error("Failed to load libraries", error);
+  });
