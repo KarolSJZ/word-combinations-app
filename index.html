@@ -2,133 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cain's Wallet Cracker</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cain's Wallet Cracker</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="app">
-        <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-        <div class="instructions">
-            <h2 class="glitch">How to Use</h2>
-            <ol>
-                <li class="glitch">Enter your word list, separated by spaces.</li>
-                <li class="glitch">Click "Generate Seeds."</li>
-                <li class="glitch">Copy the generated seed phrases.</li>
-            </ol>
-        </div>
-        <div class="form-group">
-            <label for="word-1" style="font-size: 1.2rem;">Word 1:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-1">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-2" style="font-size: 1.2rem;">Word 2:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-2">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-3" style="font-size: 1.2rem;">Word 3:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-3">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-4" style="font-size: 1.2rem;">Word 4:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-4">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-5" style="font-size: 1.2rem;">Word 5:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-5">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-         <div class="form-group">
-            <label for="word-6" style="font-size: 1.2rem;">Word 6:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-6">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-7" style="font-size: 1.2rem;">Word 7:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-7">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-8" style="font-size: 1.2rem;">Word 8:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-8">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-9" style="font-size: 1.2rem;">Word 9:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-9">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-10" style="font-size: 1.2rem;">Word 10:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-10">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-11" style="font-size: 1.2rem;">Word 11:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-11">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="word-12" style="font-size: 1.2rem;">Word 12:</label>
-            <div class="input-container">
-                <input type="text" class="word-input" id="word-12">
-                <i class="input-icon fa fa-paste"></i>
-                <i class="input-icon fa fa-times-circle"></i>
-            </div>
-        </div>
-        <button id="generate-seeds">Generate Seeds</button>
-        <div id="combinations"></div>
-        <div id="pagination"></div>
-        <div id="copy-to-clipboard" class="hidden">
-            <div id="copy-text"></div>
-            <button id="copy-button">Copy to Clipboard</button>
-        </div>
+  <div id="app">
+    <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
+    <div id="instructions" class="glitch">
+      <h2>How to Use</h2>
+      <p>1. Enter your word list, separated by spaces.</p>
+      <p>2. Click "Generate Seeds."</p>
+      <p>3. Copy the generated seed phrases.</p>
     </div>
+    <form id="word-form">
+      <div id="word-inputs"></div>
+      <button id="generate-seeds">Generate Seeds</button>
+    </form>
+    <div id="combinations"></div>
+    <div id="pagination"></div>
+  </div>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
-            
