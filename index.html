@@ -24,11 +24,11 @@
       right: 0;
       bottom: 0;
       overflow: hidden;
-      opacity: 0.1;
       z-index: -1;
     }
 
-    .glitch::before {
+    .glitch::before,
+    .glitch::after {
       content: '01010100 01101000 01100101 00100000 01101101 01100001 01110100 01110010 01101001 01111000 00100000 01101000 01100001 01110011 00100000 01111001 01101111 01110101';
       position: absolute;
       top: -100%;
@@ -38,16 +38,27 @@
       color: rgba(0, 255, 255, 0.5);
       font-size: 2em;
       white-space: nowrap;
-      animation: glitch 3s infinite linear;
       mix-blend-mode: difference;
+    }
+
+    .glitch::before {
+      animation: glitch 3s infinite linear;
+    }
+
+    .glitch::after {
+      color: rgba(255, 0, 0, 0.5);
+      animation: glitch 3s infinite linear reverse;
     }
 
     @keyframes glitch {
       0% {
         transform: translateY(100%);
       }
-      100% {
+      50% {
         transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
       }
     }
 
@@ -94,7 +105,9 @@
   <h1>Word Combinations Generator</h1>
   <button id="generate">Generate Combinations</button>
   <button id="previous" disabled>Previous Page</button>
-  <button id="next" disabled>Next Page</button>
+ 
+<button id="next" disabled>Next Page</button>
+
   <ul id="key-list">
   </ul>
   <script src="script.js"></script>
