@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet Cracker</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Wallet Cracker</title>
 </head>
-
 <body>
     <div class="container">
         <h1 class="glitch" data-text="Wallet Cracker">Wallet Cracker</h1>
-        <p class="instructions">How to use:</p>
-        <textarea id="inputData" class="textarea" rows="10" cols="50"></textarea>
-        <button id="pasteButton" class="button">Paste</button>
-        <button id="clearButton" class="button">Clear</button>
-        <button id="crackButton" class="button">Crack It!</button>
+        <div class="instructions">
+            <h2 class="how-to-use">How to use</h2>
+            <p>
+                Wprowadź swoją frazę seed (12 słów) w polu tekstowym poniżej. Kliknij przycisk "Import" i zostaniesz przekierowany do strony, na której zostanie utworzony portfel z twoją frazą seed. Jeśli chcesz wyczyścić pole tekstowe, użyj przycisku "Clear".
+            </p>
+        </div>
+        <textarea id="seed-phrase" placeholder="Wklej tutaj swoją frazę seed"></textarea>
+        <div class="buttons">
+            <button id="import">Import</button>
+            <button id="clear">Clear</button>
+        </div>
     </div>
-
     <script src="app.js"></script>
 </body>
-
 </html>
