@@ -1,94 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cain's Wallet Cracker</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cain's Wallet Cracker</title>
 </head>
-
 <body>
-  <div id="app">
-    <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-    <div id="instructions">
-      <h2>How to Use:</h2>
-      <p>1. Enter up to 10 words in each box, separated by spaces.</p>
-      <p>2. Click "Generate Seeds" to generate all possible combinations of one word from each box.</p>
-      <p>3. Copy the generated seed phrases.</p>
-    </div>
-
-    <form>
-      <div class="word-input-container">
-        <!-- Use a for loop to generate all the word inputs -->
-        <!-- Loop through 12 times to generate inputs for Word 1 to Word 12 -->
-        <!-- The id of each input is "word-x" where x is the loop variable (1 to 12) -->
-        <!-- The name of each input is "word" to group them together when submitting the form -->
-        <!-- Set maxlength to 100 to allow up to 10 words in each input -->
-        <!-- Use the Font Awesome icons for paste and clear -->
-        <!-- Use the input-container class to position the icons on top of the input -->
-        <!-- Use the input-icon class for the paste and clear icons -->
-        <!-- Use the clear-input function to clear the input when the clear icon is clicked -->
-        <!-- Use the paste-to-input function to paste text from the clipboard to the input when the paste icon is clicked -->
-        <!-- The onclick event handler is used to call the generate function when the "Generate Seeds" button is clicked -->
-        <!-- The generate function generates all possible combinations of one word from each input -->
-        <!-- The generate function then displays the generated seed phrases in the seed-output div -->
-        <!-- Use the seed-output class to style the output -->
-        <!-- Use the copy-to-clipboard function to copy the seed phrases to the clipboard when the "Copy to Clipboard" button is clicked -->
-        <!-- The seed-output-textarea is used to temporarily store the seed phrases before copying to the clipboard -->
-        <!-- The clipboard API is used to copy the seed phrases to the clipboard -->
-
-        <!-- Loop through 12 times to generate inputs for Word 1 to Word 12 -->
-        <!-- The id of each input is "word-x" where x is the loop variable (1 to 12) -->
-        <!-- The name of each input is "word" to group them together when submitting the form -->
-        <!-- Set maxlength to 100 to allow up to 10 words in each input -->
-        <!-- Use the Font Awesome icons for paste and clear -->
-        <!-- Use the input-container class to position the icons on top of the input -->
-        <!-- Use the input-icon class for the paste and clear icons -->
-        <!-- Use the clear-input function to clear the input when the clear icon is clicked -->
-        <!-- Use the paste-to-input function to paste text from the clipboard to the input when the paste icon is clicked -->
-        <!-- The onclick event handler is used to call the generate function when the "Generate Seeds" button is clicked -->
-        <!-- The generate function generates all possible combinations of one word from each input -->
-        <!-- The generate function then displays the generated seed phrases in the seed-output div -->
-        <!-- Use the seed-output class to style the output -->
-        <!-- Use the copy-to-clipboard function to copy the seed phrases to the clipboard when the "Copy to Clipboard" button is clicked -->
-        <!-- The seed-output-textarea is used to temporarily store the seed phrases before copying to the clipboard -->
-        <!-- The clipboard API is used to copy the seed phrases to the clipboard -->
-        <!-- Loop through 12 times to generate inputs for Word 1 to Word 12 -->
-        <!-- The id of each input is "word-x" where x is the loop variable (1 to 12) -->
-        <!-- The name of each input is "word" to group them together when submitting the form -->
-        <!-- Set maxlength to 100 to allow up to 10 words in each input -->
-        <!-- Use the Font Awesome icons for paste and clear -->
-        <!-- Use the input-container class to position the icons on top of the input -->
-        <!-- Use the input-icon class for the paste and clear icons -->
-        <!-- Use the clear-input function to clear the input when the clear icon is clicked -->
-        <!-- Use the paste-to-input function to paste text from the clipboard to the input when the paste icon is clicked -->
-    <div class="word-inputs">
-      <?php for ($i = 1; $i <= 12; $i++): ?>
-      <div class="form-group">
-        <label for="word-<?php echo $i ?>">Word <?php echo $i ?>:</label>
-        <div class="input-container">
-          <input type="text" class="word-input" id="word-<?php echo $i ?>" name="word" maxlength="100">
-          <i class="input-icon fa fa-paste"></i>
-          <i class="input-icon fa fa-times-circle"></i>
+    <div id="app">
+        <div id="wrapper">
+            <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
+            <span class="sub">INSTRUKCJA OBSŁUGI</span>
+            <div>
+                <button id="pasteButton">Paste</button>
+                <button id="clearButton">Clear</button>
+            </div>
+            <textarea id="inputArea" rows="20" cols="50"></textarea>
+            <button id="crackItButton">CRACK IT!</button>
+            <div id="results"></div>
         </div>
-      </div>
-      <?php endfor; ?>
     </div>
-
-    <button type="button" class="btn" onclick="generate()">Generate Seeds</button>
-
-    <div id="seed-output" class="seed-output">
-      <div class="seed-output-header">
-        <h2>Generated Seed Phrases:</h2>
-        <button type="button" class="btn" onclick="copyToClipboard()">Copy to Clipboard</button>
-      </div>
-      <textarea id="seed-output-textarea"></textarea>
-    </div>
-  </div>
-</form>
- </div>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
