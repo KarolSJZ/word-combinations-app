@@ -1,17 +1,24 @@
-const bitcoin = window.bitcoin;
-const importButton = document.getElementById('import');
-const clearButton = document.getElementById('clear');
-const textarea = document.getElementById('seed-phrase');
+function checkWallet(seedPhrase) {
+  const mnemonic = seedPhrase;
+  const seed = bip39.mnemonicToSeedSync(mnemonic);
+  const root = bip32.fromSeed(seed);
+  const path = "m/44'/145'/0'/0/0";
+  const child = root.derivePath(path);
+  const keyPair = child.toWIF();
 
-importButton.addEventListener('click', () => {
-    const seedPhrase = textarea.value.trim();
-    if (seedPhrase) {
-        window.open('https://cashtab.com/#/configure?seed=' + encodeURIComponent(seedPhrase), '_blank');
-    } else {
-        alert('Wpisz seed phrase do pola tekstowego przed importem.');
-    }
-});
+  const { address } = payments.p2pkh({
+    pubkey: child.publicKey,
+    network: networks.bitcoin
+  });
 
-clearButton.addEventListener('click', () => {
-    textarea.value = '';
-});
+  const apiKey = "your_blockchair_api_key";
+  const url = `https://api.blockchair.com/bitcoin/dashboards/address/${address}?key=${apiKey}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const balance = data.data[address].address.balance;
+      console.log(`Adres: ${address}, Saldo: ${balance}`);
+    })
+    .catch((error) => console.error(error));
+}
