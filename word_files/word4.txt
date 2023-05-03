@@ -1,0 +1,8 @@
+muscle
+coach
+skill
+sponsor
+balance
+diet
+injury
+talent

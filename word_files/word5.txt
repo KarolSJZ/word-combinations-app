@@ -1,0 +1,5 @@
+emotion
+anger
+desire
+future
+ability
