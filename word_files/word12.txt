@@ -1,7 +1,0 @@
-material
-brick
-humor
-tool
-joke
-work
-stage

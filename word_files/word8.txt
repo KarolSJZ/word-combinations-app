@@ -1,5 +1,0 @@
-ripple
-dash
-circle
-tornado
-rocket

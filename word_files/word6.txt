@@ -1,5 +1,0 @@
-coffee
-donkey
-yellow
-hollow
-follow
