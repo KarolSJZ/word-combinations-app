@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100');
+
+html, body, h1 {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#app {
+  background: #111;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+#wrapper {
+  text-align: center;
+}
+
+.sub {
+  color: rgb(100,220,220);
+  letter-spacing: 1em;
+}
+
+.instruction {
+  color: white;
+  font-size: 14px;
+  max-width: 80%;
+  text-align: center;
+}
+
+/* Add the rest of the original CSS here, including the glitch effect and other styles. */
 // Ignore all of this, scroll down until you see the next comment.
 // I just like my eye candy. 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100');
@@ -120,38 +158,29 @@ skew to change the 'thickness' of the glitch.*/
   }
 }
 
-/* Dodatkowe style */
-
-body {
+#inputArea {
+  width: 100%;
+  height: 300px;
+  resize: vertical;
+  background-color: #333;
   color: white;
+  border: none;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
 button {
-  background-color: white;
-  color: black;
-  margin: 10px;
-  padding: 5px;
-}
-
-textarea {
-  background-color: rgba(30, 30, 30, 0.8);
+  background-color: #222;
   color: white;
-  margin-bottom: 10px;
-  overflow-y: scroll;
-  white-space: nowrap;
+  border: none;
+  padding: 8px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 8px;
 }
 
-#results {
-  background-color: rgba(30, 30, 30, 0.8);
-  color: white;
-  margin-top: 10px;
-  padding: 10px;
-  overflow-y: scroll;
-  height: 300px;
-  width: 100%;
-}
-
-.highlighted {
-  font-weight: bold;
-  color: #ff0033;
+button:hover {
+  background-color: #444;
 }
