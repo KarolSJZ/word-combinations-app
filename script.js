@@ -13,11 +13,9 @@ const wordFiles = [
   "word_files/word12.txt",
 ];
 
-const bchjs = new bch_js();
-
 async function fetchWord(file) {
   const response = await fetch(file);
-  return await response.text();
+  return (await response.text()).split("\n").filter(Boolean);
 }
 
 async function fetchWords() {
@@ -35,23 +33,26 @@ function generateCombinations(words, index = 0, current = []) {
   return combinations;
 }
 
-async function generateKeys() {
-  const words = await fetchWords();
-  const keys = generateCombinations(words);
-  return keys;
-}
+let keys = [];
+let currentPage = 0;
 
-async function checkBalance(address) {
-  try {
-    const details = await bchjs.Address.details(address);
-    console.log('Saldo:', details.balance, 'BCH dla adresu', address);
-  } catch (error) {
-    console.error('Błąd podczas sprawdzania salda:', error);
-  }
+function displayKeys(page) {
+  const start = page * 10;
+  const end = start + 10;
+  const displayedKeys = keys.slice(start, end);
+  const keyList = document.getElementById('key-list');
+  keyList.innerHTML = '';
+
+  displayedKeys.forEach((key, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${start + index + 1}. ${key}`;
+    keyList.appendChild(li);
+  });
 }
 
 document.getElementById('generate').addEventListener('click', async () => {
-  keys = await generateKeys();
+  const words = await fetchWords();
+  keys = generateCombinations(words);
   currentPage = 0;
   displayKeys(currentPage);
   document.getElementById('previous').disabled = currentPage === 0;
