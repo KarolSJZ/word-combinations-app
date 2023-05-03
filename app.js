@@ -18,6 +18,9 @@ function checkWallet(seedPhrase) {
       const balance = data.balance;
       const txCount = data.transactionCount;
       console.log(`Adres: ${address}, Saldo: ${balance}, Liczba transakcji: ${txCount}`);
+      // Display the results in the "results" div
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = `<p>Adres: ${address}</p><p>Saldo: ${balance}</p><p>Liczba transakcji: ${txCount}</p>`;
     })
     .catch((error) => console.error(error));
 }
@@ -41,4 +44,8 @@ const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", () => {
   // Clear the input field
   document.getElementById("seed-phrase").value = "";
+
+  // Clear the results div
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
 });
