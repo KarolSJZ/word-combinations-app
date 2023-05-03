@@ -13,22 +13,18 @@
     <div id="app">
         <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
         <div id="instructions">
-            <h2 style="color: white; font-size: 16px;">Instructions</h2>
-            <p style="color: white; font-size: 12px;">1. Enter your word list, separated by spaces.</p>
-            <p style="color: white; font-size: 12px;">2. Click "Generate Seeds."</p>
-            <p style="color: white; font-size: 12px;">3. Copy the generated seed phrases.</p>
+            <h2>How to Use</h2>
+            <p>1. Enter up to 10 words for each field, separated by spaces.</p>
+            <p>2. Click "Generate Seeds" to generate seed phrases using one word from each field.</p>
+            <p>3. Copy the generated seed phrases.</p>
         </div>
-        <form id="word-input-form">
-            <div id="word-inputs">
-                <!-- Word inputs will be generated here -->
-            </div>
-            <button type="button" id="generate-seeds">Generate Seeds</button>
-        </form>
-        <div id="seeds-container">
-            <textarea id="seeds-output" readonly></textarea>
-            <button type="button" id="copy-seeds">Copy</button>
+        <div id="word-inputs">
         </div>
+        <button id="generate-seeds">Generate Seeds</button>
+        <div id="seed-output"></div>
     </div>
+
+    <script src="https://kit.fontawesome.com/086dc4c779.js" crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
 
