@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cain's Wallet Cracker</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cain's Wallet Cracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div id="app">
-    <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-    <div id="instructions" class="small-font">
-      <h2>How to Use</h2>
-      <p>1. Enter your word list, separated by spaces.</p>
-      <p>2. Click "Generate Seeds."</p>
-      <p>3. Copy the generated seed phrases.</p>
+    <div id="app">
+        <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
+        <div id="instructions">
+            <h2 style="color: white; font-size: 16px;">Instructions</h2>
+            <p style="color: white; font-size: 12px;">1. Enter your word list, separated by spaces.</p>
+            <p style="color: white; font-size: 12px;">2. Click "Generate Seeds."</p>
+            <p style="color: white; font-size: 12px;">3. Copy the generated seed phrases.</p>
+        </div>
+        <form id="word-input-form">
+            <div id="word-inputs">
+                <!-- Word inputs will be generated here -->
+            </div>
+            <button type="button" id="generate-seeds">Generate Seeds</button>
+        </form>
+        <div id="seeds-container">
+            <textarea id="seeds-output" readonly></textarea>
+            <button type="button" id="copy-seeds">Copy</button>
+        </div>
     </div>
-    <form id="word-form">
-      <div id="word-inputs"></div>
-      <button id="generate-seeds" type="button">Generate Seeds</button>
-    </form>
-    <div id="seed-output-container">
-      <h2>Generated Seed Phrases</h2>
-      <div id="seed-output"></div>
-    </div>
-  </div>
-  <script src="https://kit.fontawesome.com/c5a12d49d1.js" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
