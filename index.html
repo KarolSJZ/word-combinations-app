@@ -1,18 +1,65 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Combinations App</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://unpkg.com/bch-js@4.2.3/dist/bch-js.min.js"></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f0f0f;
+      font-family: 'Orbitron', sans-serif;
+      color: #0ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+    
+    h1 {
+      font-size: 48px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      background-color: #0ff;
+      color: #0f0f0f;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    
+    button:hover {
+      background-color: #00cccc;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      max-width: 800px;
+      overflow-x: auto;
+    }
+    
+    li {
+      font-size: 16px;
+      margin-bottom: 5px;
+      word-break: break-all;
+    }
+  </style>
+  <title>Word Combinations App</title>
 </head>
 <body>
-    <h1>Word Combinations App</h1>
-    <button id="generate">Generuj kombinacje</button>
-    <button id="previous" disabled>Poprzednia strona</button>
-    <button id="next">Następna strona</button>
-    <div id="combinations"></div>
+  <h1>Word Combinations Generator</h1>
+  <button id="generate">Generate Combinations</button>
+  <button id="previous" disabled>Previous Page</button>
+  <button id="next" disabled>Next Page</button>
+  <ul id="key-list">
+  </ul>
+  <script src="script.js"></script>
 </body>
 </html>
