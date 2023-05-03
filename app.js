@@ -1,57 +1,72 @@
-// Select word input elements
-const wordInputs = document.querySelectorAll('.word-input');
+// Clear input when clear icon is clicked
+function clearInput(event) {
+  const input = event.target.previousElementSibling;
+  input.value = "";
+}
 
-// Select generate button element
-const generateButton = document.getElementById('generate-seeds');
+// Paste text from clipboard to input when paste icon is clicked
+function pasteToInput(event) {
+  const input = event.target.previousElementSibling;
+  navigator.clipboard.readText().then((text) => {
+    input.value = text;
+  });
+}
 
-// Select result textarea element
-const resultTextarea = document.getElementById('result');
+// Generate all possible combinations of one word from each input
+function generate(event) {
+  event.preventDefault();
+  const words = [];
+  const seedOutput = document.getElementById("seed-output");
+  const seedOutputTextarea = document.getElementById("seed-output-textarea");
 
-// Register event listeners
-generateButton.addEventListener('click', generateSeeds);
-wordInputs.forEach(input => {
-    input.addEventListener('input', generateSeeds);
-    input.nextElementSibling.addEventListener('click', pasteFromClipboard);
-    input.nextElementSibling.nextElementSibling.addEventListener('click', clearInput);
+  // Loop through all the word inputs and add them to the words array
+  for (let i = 1; i <= 12; i++) {
+    const input = document.getElementById(`word-${i}`);
+    const inputWords = input.value.split(" ");
+    words.push(inputWords);
+  }
+
+  // Generate all possible combinations of one word from each input
+  const combinations = cartesian(...words).map((c) => c.join(" "));
+
+  // Display the generated seed phrases
+  seedOutputTextarea.value = combinations.join("\n");
+  seedOutput.style.display = "block";
+}
+
+// Copy seed phrases to clipboard when "Copy to Clipboard" button is clicked
+function copyToClipboard(event) {
+  const seedOutputTextarea = document.getElementById("seed-output-textarea");
+  seedOutputTextarea.select();
+  document.execCommand("copy");
+}
+
+// Generate all possible combinations of arrays
+function cartesian(...arrays) {
+  return arrays.reduce((a, b) => {
+    return a.flatMap((x) => {
+      return b.map((y) => {
+        return x.concat(y);
+      });
+    });
+  }, [[]]);
+}
+
+// Add event listeners to paste and clear icons
+const pasteIcons = document.querySelectorAll(".fa-paste");
+pasteIcons.forEach((icon) => {
+  icon.addEventListener("click", pasteToInput);
 });
 
-/**
- * Generate seed phrases from the word inputs
- */
-function generateSeeds() {
-    const words = [];
-    for (let i = 1; i <= 12; i++) {
-        const input = document.getElementById(`word-${i}`);
-        const inputWords = input.value.trim().split(' ');
-        if (inputWords.length > 1) {
-            words.push(inputWords[Math.floor(Math.random() * inputWords.length)]);
-        } else if (inputWords.length === 1) {
-            words.push(inputWords[0]);
-        }
-    }
-    const numSeeds = document.getElementById('num-seeds').value;
-    const seeds = Cain.generateSeedPhrases(words, numSeeds);
-    resultTextarea.value = seeds.join('\n');
-}
+const clearIcons = document.querySelectorAll(".fa-times-circle");
+clearIcons.forEach((icon) => {
+  icon.addEventListener("click", clearInput);
+});
 
-/**
- * Paste text from clipboard to a given input
- * @param {Event} event 
- */
-function pasteFromClipboard(event) {
-    const input = event.target.previousElementSibling;
-    navigator.clipboard.readText().then(text => {
-        input.value = text.trim();
-        generateSeeds();
-    });
-}
+// Add event listener to generate button
+const generateButton = document.getElementById("generate-button");
+generateButton.addEventListener("click", generate);
 
-/**
- * Clear the value of a given input
- * @param {Event} event 
- */
-function clearInput(event) {
-    const input = event.target.previousElementSibling.previousElementSibling;
-    input.value = '';
-    generateSeeds();
-}
+// Add event listener to copy to clipboard button
+const copyButton = document.getElementById("copy-button");
+copyButton.addEventListener("click", copyToClipboard);
