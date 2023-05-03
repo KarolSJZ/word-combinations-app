@@ -1,67 +1,85 @@
-const wordsPerFile = 12;
-const combinationsPerPage = 100000;
-let currentPage = 0;
-let combinations = [];
-let totalPages = 0;
+// Pobierz formularz i przycisk
+const form = document.getElementById('word-form');
+const submitButton = document.getElementById('submit-button');
 
-function generateCombinations() {
-  currentPage = 0;
-  combinations = [];
-  for (let i = 0; i < wordsPerFile; i++) {
-    const fileWords = wordlist[i];
-    const newCombinations = [];
-    for (const word of fileWords) {
-      if (combinations.length === 0) {
-        newCombinations.push(word);
-      } else {
-        for (const base of combinations) {
-          newCombinations.push(base + " " + word);
+// Dodaj obsługę zdarzenia kliknięcia na przycisk
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // Znajdź wszystkie pola input w formularzu
+    const inputs = form.querySelectorAll('input[type="text"]');
+
+    // Utwórz pustą tablicę słów
+    const words = [];
+
+    // Przejdź przez wszystkie pola input
+    for (let i = 0; i < inputs.length; i++) {
+        const word = inputs[i].value.trim();
+        if (word !== '') {
+            words.push(word);
         }
-      }
     }
-    combinations = newCombinations;
-  }
-  totalPages = Math.ceil(combinations.length / combinationsPerPage);
-  renderCombinations();
+
+    // Wywołaj funkcję generującą kombinacje
+    generateCombinations(words);
+});
+
+function generateCombinations(words) {
+    // Wygeneruj kombinacje tylko wtedy, gdy istnieją jakieś słowa
+    if (words.length > 0) {
+        // Usuń wcześniejsze wyniki z wyświetlacza
+        const combinationsElement = document.getElementById('combinations');
+        combinationsElement.innerHTML = '';
+
+        // Wygeneruj kombinacje
+        const combinations = generateAllCombinations(words);
+
+        // Wyświetl kombinacje
+        displayCombinations(combinations);
+    }
 }
 
-function copyText(text) {
-  const el = document.createElement('textarea');
-  el.value = text;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
+function generateAllCombinations(words) {
+    const combinations = [];
+
+    // Utwórz tablicę zawierającą indeksy słów (0, 1, 2, itd.)
+    const wordIndexes = words.map((word, index) => index);
+
+    // Wygeneruj wszystkie możliwe kombinacje indeksów
+    const indexCombinations = generateIndexCombinations(wordIndexes);
+
+    // Dla każdej kombinacji indeksów utwórz kombinację słów
+    for (let i = 0; i < indexCombinations.length; i++) {
+        const indexCombination = indexCombinations[i];
+        const combination = indexCombination.map(index => words[index]).join(' ');
+        combinations.push(combination);
+    }
+
+    return combinations;
 }
 
-function renderCombinations() {
-  const start = currentPage * combinationsPerPage;
-  const end = start + combinationsPerPage;
-  const visibleCombinations = combinations.slice(start, end);
-  const combinationsDiv = document.getElementById("combinations");
-  const pagination = document.getElementById("pages");
+function generateIndexCombinations(indexes) {
+    const combinations = [];
 
-  combinationsDiv.innerHTML = "";
-  pagination.innerHTML = "";
+    // Funkcja rekurencyjna do wygenerowania kombinacji indeksów
+    function generate(currentCombination, remainingIndexes) {
+        // Jeżeli nie ma już pozostałych indeksów, dodaj bieżącą kombinację do listy
+        if (remainingIndexes.length === 0) {
+            combinations.push(currentCombination);
+        } else {
+            // W przeciwnym razie wywołaj funkcję dla każdej pozostałej liczby
+            for (let i = 0; i < remainingIndexes.length; i++) {
+                const newCombination = currentCombination.concat(remainingIndexes[i]);
+                const newRemainingIndexes = remainingIndexes.slice(0, i).concat(remainingIndexes.slice(i + 1));
+                generate(newCombination, newRemainingIndexes);
+            }
+        }
+    }
 
-  visibleCombinations.forEach(combination => {
-    const combinationElement = document.createElement("p");
-    combinationElement.textContent = combination;
-    combinationElement.onclick = () => copyText(combination);
-    combinationElement.style.cursor = "pointer";
-    combinationsDiv.appendChild(combinationElement);
-  });
+    // Wywołaj funkcję rekurencyjną
+    generate([], indexes);
 
-  for (let i = 0; i < totalPages; i++) {
-    const pageButton = document.createElement("button");
-    pageButton.textContent = (i * combinationsPerPage + 1)
-      + " - " + ((i + 1) * combinationsPerPage);
-    pageButton.onclick = () => {
-      currentPage = i;
-      renderCombinations();
-    };
-    pagination.appendChild(pageButton);
-  }
+    return combinations;
 }
 
-generateCombinations();
+function displayCombinations(combinations) {
