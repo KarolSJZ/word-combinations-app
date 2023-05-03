@@ -13,15 +13,17 @@
       <div class="instructions">
         <h2 class="how-to-use">How to use</h2>
         <p>
-          Wprowadź swoją frazę seed (12 słów) w polu tekstowym poniżej. Kliknij przycisk "Import" i zostaniesz przekierowany do strony, na której zostanie utworzony portfel z twoją frazą seed. Jeśli chcesz wyczyścić pole tekstowe, użyj przycisku "Clear".
+          To crack a wallet, enter the 12-word seed phrase in the text box and click the "Crack It!" button.
         </p>
       </div>
-      <textarea id="seed-phrase" placeholder="Wklej tutaj swoją frazę seed"></textarea>
+      <textarea id="seed-phrase" placeholder="Enter 12-word seed phrase"></textarea>
       <div class="buttons">
-        <button id="crack-button">Crack It!</button>
-        <button id="clear-button">Clear</button>
+        <button id="crack-button" type="button">Crack It!</button>
+        <button id="clear-button" type="button">Clear</button>
       </div>
+      <div id="results"></div>
     </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
