@@ -1,3 +1,4 @@
+const bitcoin = window.bitcoin;
 const importButton = document.getElementById('import');
 const clearButton = document.getElementById('clear');
 const textarea = document.getElementById('seed-phrase');
