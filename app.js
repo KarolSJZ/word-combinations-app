@@ -22,3 +22,24 @@ function checkWallet(seedPhrase) {
     })
     .catch((error) => console.error(error));
 }
+
+// Get reference to the crack button
+const crackButton = document.getElementById("crack-button");
+
+// Add click event listener to the crack button
+crackButton.addEventListener("click", () => {
+  // Get the seed phrase from the input field
+  const seedPhrase = document.getElementById("seed-phrase").value.trim();
+
+  // Call the checkWallet function with the seed phrase as an argument
+  checkWallet(seedPhrase);
+});
+
+// Get reference to the clear button
+const clearButton = document.getElementById("clear-button");
+
+// Add click event listener to the clear button
+clearButton.addEventListener("click", () => {
+  // Clear the input field
+  document.getElementById("seed-phrase").value = "";
+});
