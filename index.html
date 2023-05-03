@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bitcoinjs-lib@5.2.0/dist/bitcoinjs-lib.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <title>Wallet Cracker</title>
-</head>
-<body>
-    <div class="container">
+ <body>
+    <div id="app">
+      <div id="wrapper">
         <h1 class="glitch" data-text="Wallet Cracker">Wallet Cracker</h1>
-        <div class="instructions">
-            <h2 class="how-to-use">How to use</h2>
-            <p>
-                Wprowadź swoją frazę seed (12 słów) w polu tekstowym poniżej. Kliknij przycisk "Import" i zostaniesz przekierowany do strony, na której zostanie utworzony portfel z twoją frazą seed. Jeśli chcesz wyczyścić pole tekstowe, użyj przycisku "Clear".
-            </p>
-        </div>
-        <textarea id="seed-phrase" placeholder="Wklej tutaj swoją frazę seed"></textarea>
-        <div class="buttons">
-            <button id="import">Import</button>
-            <button id="clear">Clear</button>
-        </div>
+        <span class="sub">EFFECT</span>
+      </div>
+
+      <div class="form-wrapper">
+        <h2 class="form-header">How to use</h2>
+        <p class="form-instructions">
+          To crack a wallet, enter the 12-word seed phrase in the text box and click the "Crack It!" button.
+        </p>
+        <form id="wallet-form">
+          <textarea
+            id="wallet-seed"
+            name="wallet-seed"
+            placeholder="Enter 12-word seed phrase"
+          ></textarea>
+          <div class="button-group">
+            <button id="clear-button" type="button">Clear</button>
+            <button id="crack-button" type="submit">Crack It!</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <script src="app.js"></script>
-</body>
+    <script src="./app.js"></script>
+  </body>
 </html>
