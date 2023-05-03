@@ -1,3 +1,6 @@
+const bitcoin = require("bitcoinjs-lib");
+require("@muzamint/bitcoinjs-lib-networks");
+
 // Get reference to the crack button
 const crackButton = document.getElementById("crack-button");
 
