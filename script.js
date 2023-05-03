@@ -1,7 +1,16 @@
 const wordFiles = [
   "word_files/word1.txt",
   "word_files/word2.txt",
-  // Dodaj pozostałe 10 plików ze słowami
+  "word_files/word3.txt",
+  "word_files/word4.txt",
+  "word_files/word5.txt",
+  "word_files/word6.txt",
+  "word_files/word7.txt",
+  "word_files/word8.txt",
+  "word_files/word9.txt",
+  "word_files/word10.txt",
+  "word_files/word11.txt",
+  "word_files/word12.txt",
 ];
 
 const bchjs = new bch_js();
@@ -42,15 +51,23 @@ async function checkBalance(address) {
 }
 
 document.getElementById('generate').addEventListener('click', async () => {
-  const keys = await generateKeys();
-  const combinationsDiv = document.getElementById('combinations');
-  combinationsDiv.innerHTML = '';
+  keys = await generateKeys();
+  currentPage = 0;
+  displayKeys(currentPage);
+  document.getElementById('previous').disabled = currentPage === 0;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
+});
 
-  for (const key of keys) {
-    const address = bchjs.Address.fromPrivKey(key);
-    checkBalance(address);
-    const keyElement = document.createElement('div');
-    keyElement.textContent = key;
-    combinationsDiv.appendChild(keyElement);
-  }
+document.getElementById('previous').addEventListener('click', () => {
+  currentPage -= 1;
+  displayKeys(currentPage);
+  document.getElementById('previous').disabled = currentPage === 0;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
+});
+
+document.getElementById('next').addEventListener('click', () => {
+  currentPage += 1;
+  displayKeys(currentPage);
+  document.getElementById('previous').disabled = currentPage === 0;
+  document.getElementById('next').disabled = currentPage === Math.ceil(keys.length / 10) - 1;
 });
