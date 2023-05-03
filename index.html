@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +7,10 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <div id="app">
     <h1 class="glitch" data-text="Cain's Wallet Cracker">Cain's Wallet Cracker</h1>
-    <div id="instructions" class="glitch">
+    <div id="instructions" class="small-font">
       <h2>How to Use</h2>
       <p>1. Enter your word list, separated by spaces.</p>
       <p>2. Click "Generate Seeds."</p>
@@ -20,13 +18,14 @@
     </div>
     <form id="word-form">
       <div id="word-inputs"></div>
-      <button id="generate-seeds">Generate Seeds</button>
+      <button id="generate-seeds" type="button">Generate Seeds</button>
     </form>
-    <div id="combinations"></div>
-    <div id="pagination"></div>
+    <div id="seed-output-container">
+      <h2>Generated Seed Phrases</h2>
+      <div id="seed-output"></div>
+    </div>
   </div>
-
+  <script src="https://kit.fontawesome.com/c5a12d49d1.js" crossorigin="anonymous"></script>
   <script src="app.js"></script>
 </body>
-
 </html>
